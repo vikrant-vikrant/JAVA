@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class practice {
+public class Day2{
   public static void main(String args[]){
     // Output in Java
     System.out.println("Hello World");
