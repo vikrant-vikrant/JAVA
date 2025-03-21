@@ -61,7 +61,7 @@ public class Day2{
 // haa bhai samjh gaya ache se
 
 /*Input in Java
-next,nextLine,nextlnt,nextByte,nextFloat,nextDouble,nextBoolean,nextShort,nextLong*/
+next,nextLine,nextInt,nextByte,nextFloat,nextDouble,nextBoolean,nextShort,nextLong*/
 Scanner sc = new Scanner(System.in);
 // String input = sc.next();
 // System.out.println(input);

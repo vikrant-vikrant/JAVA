@@ -16,7 +16,10 @@ public class Day3 {
     int product = a * b;
     System.out.println("Product: "+ product );
 
-    
+    //exponentiation in Java
+    double expo = Math.pow(a,b);
+    System.out.println("exponentiation: " + expo);
+
     //Type Conversion
     //byte -> short -> int -> float -> long -> double
     
@@ -56,5 +59,37 @@ public class Day3 {
     byte n = 4;
     byte mul = (byte)(n * 2);
     System.out.println(mul);
+
+  //Practice Questions
+  //Average of three numbers
+  System.out.println("Enter frist Number: ");
+  int a1 = sc.nextInt();
+  System.out.println("Enter Second Number: ");
+  int a2 = sc.nextInt();
+  System.out.println("Enter Third Number: ");
+  int a3 = sc.nextInt();
+  float avg = (a1 + a2 + a3)/3;
+  System.out.println("Average of N numbers : " + avg);
+
+  //Area of a square
+  System.out.println("Enter the side of Square: ");
+  int side = sc.nextInt();
+  int ar = side * side;
+  System.out.println("Area of Square: " + ar + "Unit2");
+
+  //Items total cost + 18% GST tax
+  System.out.println("Enter the Price of pencil: ");
+  int pencil = sc.nextInt();
+  System.out.println("Enter the Price of pen: ");
+  int pen = sc.nextInt();
+  System.out.println("Enter the Price of eraser: ");
+  int eraser = sc.nextInt();
+  int sum = pencil + pen + eraser;
+  float totalPrice = sum + (sum * 18/100);
+  System.out.print(totalPrice);
+
+  int $ = 24;
+  System.out.print($);
+
   }
 }
