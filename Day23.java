@@ -1,6 +1,8 @@
-import java.util.Scanner;
-import java.util.*;
+
+// import java.util.Scanner;
+// import java.util.*;
 public class Day23 {
+
     //SOLID RHOMBUS
     //SOLVED BY OWN
     public static void solidRhombus(int n) {
@@ -92,12 +94,79 @@ public class Day23 {
         return largest;
     }
 
+    //BINARY SEARCH
+    public static int binarySearch(int numbers[], int key) {
+        int start = 0, end = numbers.length - 1;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (numbers[mid] == key) {
+                return mid;
+            }
+            if (numbers[mid] < key) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    //REVERSE AN ARRAY
+    public static void reverse(int numbers[]) {
+        int start = 0, end = numbers.length - 1;
+        while (start < end) {
+            int temp = numbers[end];
+            numbers[end] = numbers[start];
+            numbers[start] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    //PAIRS IN ARRAY
+    public static void paris(int number[]) {
+        int tp = 0;
+        for (int i = 0; i < number.length; i++) {
+            int curr = number[i];
+            for (int j = i + 1; j < number.length; j++) {
+                System.out.print("(" + curr + "," + number[j] + ")");
+                tp++;
+            }
+            System.out.println();
+        }
+        System.out.println("Total pairs " + tp);
+    }
+
+    //SUBARRAYS
+    public static void subarrays(int number[]) {
+        int ts = 0;
+        for (int i = 0; i < number.length; i++) {
+            int start = i;
+            for (int j = i; j < number.length; j++) {
+                int end = j;
+                for (int k = start; k <= end; k++) {
+                    System.out.print(number[k] + " ");
+                    ts++;
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+            System.out.println("total subarrays : "+ts);
+    }
     public static void main(String[] args) {
-        int marks[] = {10, 20, 30, 40, 50, 40, 5, 32, 11};
+        int marks[] = {5, 11, 10, 40};
+        subarrays(marks);
+        // int marks[] = {5, 11, 10, 20, 30, 32, 40, 50, 40};
+        paris(marks);
+        reverse(marks);
+        for(int i = 0;i<marks.length;i++){
+            System.out.print(marks[i] + " ");
+        }
+        int key = 11;
+        System.out.println("Index for key is : " + binarySearch(marks, key));
         int biggestNum = largestNum(marks);
         System.out.println("Largest number : " + biggestNum);
-
-        int key = 40;
         int index = linearSearch(marks, key);
         if (index == -1) {
             System.out.println("NOT found");
@@ -109,17 +178,17 @@ public class Day23 {
         for (int i = 0; i < marks.length; i++) {
             System.out.print(marks[i] + " ");
         }
-        Scanner sc = new Scanner(System.in);
-        marks[0] = sc.nextInt();
-        marks[1] = sc.nextInt();
-        marks[2] = sc.nextInt();
-        System.out.println("maths " + marks[0]);
-        System.out.println("hindi " + marks[1]);
-        marks[2] = 100;
-        System.out.println("english " + marks[2]);
-        System.out.println("Length " + marks.length);
-        // diamond(5);
-        // hollow_rhombus(7);
-        // solidRhombus(7);
+        // Scanner sc = new Scanner(System.in);
+        // marks[0] = sc.nextInt();
+        // marks[1] = sc.nextInt();
+        // marks[2] = sc.nextInt();
+        // System.out.println("maths " + marks[0]);
+        // System.out.println("hindi " + marks[1]);
+        // marks[2] = 100;
+        // System.out.println("english " + marks[2]);
+        // System.out.println("Length " + marks.length);
+        diamond(5);
+        hollow_rhombus(7);
+        solidRhombus(7);
     }
 }
