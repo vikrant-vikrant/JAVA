@@ -44,9 +44,71 @@ public class Day24 {
         }
         System.out.println("max sum : " + maxSum);
     }
-    public static void main(String[] args) {
-        int number[] = {2, 3, 4, 5, 6};
-        maxSubArrSumPrefix(number);
-        maxSubarraysSum(number);
+
+    //MAX SUM OF SUBARRAYS(kadane Algo)
+    public static void kadaneAlgo(int number[]) {
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for (int i = 0; i < number.length; i++) {
+            currSum = currSum + number[i];
+            if (currSum < 0) {
+                currSum = 0;
+            }
+            maxSum = Math.max(currSum, maxSum);
+        }
+        System.out.println("max subarray sum : " + maxSum);
+    }
+
+    //TRAPPED RAINWATER
+    public static int trappedRainwater(int height[]) {
+        int n = height.length;
+        //calculate left max boundery
+        int leftmax[] = new int[n];
+        leftmax[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftmax[i] = Math.max(height[i], leftmax[i - 1]);
+        }
+        // calculate right max boundery
+        int rightmax[] = new int[n];
+        rightmax[n - 1] = height[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightmax[i] = Math.max(height[i], rightmax[i + 1]);
+        }
+        int trappedWater = 0;
+        //loop
+        for (int i = 0; i < n; i++) {
+            //waterLevel = min(leftmax, rightmax boundry)
+            int waterLevel = Math.min(leftmax[i], rightmax[i]);
+            //trapped water = waterlevel - height[i]
+            trappedWater += waterLevel - height[i];
+        }
+        return trappedWater;
+    }
+
+    //max profit of stocks
+    public static int buySellStock(int prices[]) {
+        int buyPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+
+        for (int i = 0; i < prices.length; i++) {
+            if (buyPrice < prices[i]) {
+                int profit = prices[i] - buyPrice;
+                maxProfit = Math.max(maxProfit, profit);
+            } else {
+                buyPrice = prices[i];
+            }
+        }
+        return maxProfit;
+    }
+
+    public static void main(String args[]) {
+        int prices[] = {7, 1, 5, 3, 6, 4};
+        System.out.println("Max proft : " + buySellStock(prices));
+        // int height[] = {4, 2, 0, 6, 3, 2, 5};
+        // System.out.println(trappedRainwater(height));
+        // int number[] = {2, 3, 4, 5, 6};
+        // kadaneAlgo(number);
+        // maxSubArrSumPrefix(number);
+        // maxSubarraysSum(number);
     }
 }
