@@ -37,50 +37,93 @@ public class Matrices {
         int endRow = matrix.length - 1;
         int endCollum = matrix.length - 1;
 
-        while(startRow <= endRow && startCollum <=endCollum){
-          //top
-          for(int j=startCollum;j<=endCollum;j++){
-            System.out.print(matrix[startCollum][j]+" ");
-          }
-          //right
-          for(int i=startRow+1;i<=endRow;i++){
-            System.out.print(matrix[i][endCollum]+" ");
-          }
-          //bottem
-          for(int j=endCollum- 1;j>=startCollum;j--){
-            if(startRow == endRow){
-              break;
+        while (startRow <= endRow && startCollum <= endCollum) {
+            //top
+            for (int j = startCollum; j <= endCollum; j++) {
+                System.out.print(matrix[startCollum][j] + " ");
             }
-            System.out.print(matrix[endRow][j]+" ");
-          }
-        //left
-        for(int i=endRow- 1;i>=startRow+1;i--){
-          if(startCollum == endCollum){
-            break;
-          }
-            System.out.print(matrix[i][startCollum]+" ");
-          }
-        startCollum++;
-        startRow++;
-        endCollum--;
-        endRow--;
+            //right
+            for (int i = startRow + 1; i <= endRow; i++) {
+                System.out.print(matrix[i][endCollum] + " ");
+            }
+            //bottem
+            for (int j = endCollum - 1; j >= startCollum; j--) {
+                if (startRow == endRow) {
+                    break;
+                }
+                System.out.print(matrix[endRow][j] + " ");
+            }
+            //left
+            for (int i = endRow - 1; i >= startRow + 1; i--) {
+                if (startCollum == endCollum) {
+                    break;
+                }
+                System.out.print(matrix[i][startCollum] + " ");
+            }
+            startCollum++;
+            startRow++;
+            endCollum--;
+            endRow--;
         }
         System.out.println();
     }
-    public static void diagonalSum(int matrix[][]){
-      int sum = 0;
-      for(int j=0;j<matrix.length;j++){
-        
-      }
+
+    //DIAGONAL SUM
+    public static void diagonalSum(int matrice[][]) {
+        int sum = 0;
+        // for (int j = 0; j < matrice.length; j++) {
+        //     for (int i = 0; i < matrice.length; i++) {
+        //         if (j == i) {
+        //             sum += matrice[i][j];
+        //         } else if (i + j == matrice.length - 1) {
+        //             sum += matrice[i][j];
+        //         }
+        //     }
+        // }
+        for (int i = 0; i < matrice.length; i++) {
+            //primart Diagonal
+            sum += matrice[i][i];
+            //secondry Diagonal
+            if (i != matrice.length - 1 - i) {
+                sum += matrice[i][matrice.length - i - 1];
+            }
+        }
+        System.out.println("Total sum of Diagonal is : " + sum);
     }
+
+    //SEARCH IN SORTED MATRIX
+    public static boolean stairCaseSearch(int matrix[][], int key) {
+        int row = 0, col = matrix.length - 1;
+        while (row < matrix.length && col >= 0) {
+            if (matrix[row][col] == key) {
+                System.out.println("Key found at (" + row + "," + col + ")");
+                return true;
+            } else if (key < matrix[row][col]) {
+                col--;
+            } else {
+                row++;
+            }
+        }
+        System.out.println("Key not found !");
+        return false;
+    }
+
     public static void main(String[] args) {
         int matrix[][] = {
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 16}
-        };
-        printSpiral(matrix);
+            {1, 2, 3, 4, 5},
+            {6, 7, 8, 9, 10},
+            {11, 12, 13, 14, 15},
+            {16, 17, 18, 19, 20},
+            {21, 22, 23, 24, 25}};
+            stairCaseSearch(matrix, 23);
+        // diagonalSum(matrix);
+        // int matrix[][] = {
+        //     {1, 2, 3, 4},
+        //     {5, 6, 7, 8},
+        //     {9, 10, 11, 12},
+        //     {13, 14, 15, 16}
+        // };
+        // printSpiral(matrix);
         // int matrix[][] = new int[3][3];
         // int n = 3, m = 3;
         // Scanner sc = new Scanner(System.in);
@@ -95,7 +138,6 @@ public class Matrices {
         //     {4, 5, 6},
         //     {7, 8, 9}
         // };
-
         //output
         // for (int i = 0; i < matrix.length; i++) {
         //     for (int j = 0; j < matrix[0].length; j++) {
