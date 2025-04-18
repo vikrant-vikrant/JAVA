@@ -67,7 +67,12 @@ public class Matrices {
         }
         System.out.println();
     }
-
+    public static void diagonalSum(int matrix[][]){
+      int sum = 0;
+      for(int j=0;j<matrix.length;j++){
+        
+      }
+    }
     public static void main(String[] args) {
         int matrix[][] = {
             {1, 2, 3, 4},
