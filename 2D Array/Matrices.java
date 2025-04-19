@@ -17,13 +17,13 @@ public class Matrices {
     public static void largeSmall(int matrix[][]) {
         int large = Integer.MIN_VALUE;
         int small = Integer.MAX_VALUE;
-        for (int i = 0; i < matrix.length; i++) {
+        for (int[] matrix1 : matrix) {
             for (int j = 0; j < matrix[0].length; j++) {
-                if (matrix[i][j] > large) {
-                    large = matrix[i][j];
+                if (matrix1[j] > large) {
+                    large = matrix1[j];
                 }
-                if (matrix[i][j] < small) {
-                    small = matrix[i][j];
+                if (matrix1[j] < small) {
+                    small = matrix1[j];
                 }
             }
         }

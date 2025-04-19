@@ -75,14 +75,36 @@ public class practice {
             System.out.println();
         }
     }
+    //STAIR CASE SEARCH IN MATRIX
+    public static boolean stairSearch(int matrice[][], int key) {
+        int row = matrice.length - 1, col = 0;
+        while (row >= 0 && col < matrice.length) {
+            if (matrice[row][col] == key) {
+                System.out.println("Key found at " + row + "," + col + ")");
+                return true;
+            } else if (key < matrice[row][col]) {
+                row--;
+            } else {
+                col++;
+            }
+        }
+        System.out.println("Key not found !");
+        return  false;
+    }
+
     public static void main(String args[]) {
-        int matrix[][] = {{4, 7, 8}, {8, 8, 7}};
-        int[][] result = transpose(matrix);
-        printMatrix(result);
-        System.out.println("Sum of row is : " + rowSum(matrix, 1));
-        System.out.println("Sum of row is : " + rowSum(matrix, 2));
-        printNum(matrix, 7);
-        printNum(matrix, 8);
+        int matrice[][] = {
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 10, 11, 12},};
+        stairSearch(matrice, 11);
+        // int matrix[][] = {{4, 7, 8}, {8, 8, 7}};
+        // int[][] result = transpose(matrix);
+        // printMatrix(result);
+        // System.out.println("Sum of row is : " + rowSum(matrix, 1));
+        // System.out.println("Sum of row is : " + rowSum(matrix, 2));
+        // printNum(matrix, 7);
+        // printNum(matrix, 8);
         // int matrice[][] = {
         //     {1, 2, 3, 4},
         //     {5, 6, 7, 8},
