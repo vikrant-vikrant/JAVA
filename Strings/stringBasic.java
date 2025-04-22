@@ -38,20 +38,50 @@ public class stringBasic {
             substr += str.charAt(i);
         }
         return substr;
-    }   
-    public static void main(String[] args) {
-
-        String str = "hi, i am vikrant";
+    }  
+    //TO UPPER CASE
+    public static String toUpperCase(String str){
         StringBuilder sb = new StringBuilder("");
         char ch= Character.toUpperCase(str.charAt(0));
         sb.append(ch);
 
-        for(int i=0;i<str.length();i++){
-            if(str.charAt(i) == ' '){
-                sb.append();
+        for(int i=1;i<str.length();i++){
+            if(str.charAt(i) == ' ' && i<str.length()-1){
+                sb.append(str.charAt(i));
+                i++;
+                sb.append(Character.toUpperCase(str.charAt(i)));
+            }else{
+                sb.append(str.charAt(i));
             }
         }
-        System.out.println(str);
+        return sb.toString();
+    } 
+
+    //String Compression...
+    public static String stringComp(String str){
+        String newStr  = "";
+        for(int i=0;i<str.length();i++){
+            Integer count = 1;
+            while(i<str.length()-1 && str.charAt(i) == str.charAt(i+1)){
+                count++;
+                i++;
+            }
+            newStr += str.charAt(i);
+            if(count>1){
+                newStr += count.toString();
+            }
+        }
+        return newStr;
+    }
+    public static void main(String[] args) {
+        String str = "abbcccdddd";
+        System.out.println(stringComp(str));
+
+
+        // String str = "hi, i am vikrant";
+        // System.out.println(toUpperCase(str));
+
+
         // StringBuilder sb = new StringBuilder("");
         // for(char ch='a';ch<='z';ch++){
         //     sb.append(ch);
