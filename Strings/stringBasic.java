@@ -12,7 +12,7 @@ public class stringBasic {
     }
 
     //direction question
-    public static float  route(String str) {
+    public static float route(String str) {
         int x = 0;
         int y = 0;
         for (int i = 0; i < str.length(); i++) {
@@ -31,11 +31,49 @@ public class stringBasic {
         return (float) Math.sqrt(x * x + y * y);
     }
 
-    //substing
+    //substring
+    public static String substing(String str, int si, int ei){
+        String substr = "";
+        for(int i=si;i<ei;i++){
+            substr += str.charAt(i);
+        }
+        return substr;
+    }   
     public static void main(String[] args) {
-      System.out.println(route("EWEWEWNSNSNS"));
-      System.out.println(route("WNEENESENNN"));
-        
+
+        String str = "hi, i am vikrant";
+        StringBuilder sb = new StringBuilder("");
+        char ch= Character.toUpperCase(str.charAt(0));
+        sb.append(ch);
+
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i) == ' '){
+                sb.append();
+            }
+        }
+        System.out.println(str);
+        // StringBuilder sb = new StringBuilder("");
+        // for(char ch='a';ch<='z';ch++){
+        //     sb.append(ch);
+        // }
+        // System.out.println(sb);
+
+        // find the lexicographically largest
+        // String fruits[] = {"apple", "mango", "banana"};
+        // String largest = fruits[0];
+        // for (String fruit : fruits) {
+        //     if (largest.compareToIgnoreCase(fruit) < 0) {
+        //         largest = fruit;
+        //     }
+        // }
+        // System.out.println(largest);
+        // String str = "HelloWorld";
+        // System.out.println(substing(str, 0, 5));
+        // System.out.println(substing(str, 5, str.length()));
+        // System.out.println(str.substring(0, 5));
+        // System.out.println(route("EWEWEWNSNSNS"));
+        // System.out.println(route("WNEENESENNN"));
+
         // String name = "vikrant";
         // String name1 = "madam";
         // System.out.println("Is palindrome word : " + palindromeWord(name));
