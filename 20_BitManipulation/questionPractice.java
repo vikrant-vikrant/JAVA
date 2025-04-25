@@ -89,8 +89,48 @@ public class questionPractice {
         return ans;
     }
 
+    //question practicing by own
+    //CHECK ODD/EVEN
+    public static void isOddEven(int n) {
+        if ((n & 1) == 0) {
+            System.out.println(n + " is EVEN");
+        } else {
+            System.out.println(n + " is ODD");
+        }
+    }
+    //GET Ith bit
+    public static int Ithbit(int n, int i){
+        // int bitMask = 1<<i;
+        // if((n&bitMask) == 0){
+        //     return 0;
+        // }
+        // return 1;
+
+        return ((n&1<<i))==0?0:1;
+    }
+    //clear Ith bit(make it 0)
+    public static int IthBitClear(int n, int i){
+        return n | 1<<i;
+    }
+
+    public static int countBits(int n){
+        int count = 0;
+        while(n>0){
+            if((n & 1) != 0){
+                count++;
+            }
+            n = n<<1;
+        }
+        return count;
+    }
     public static void main(String[] args) {
-      System.out.println(exponentiation(5, 3));
+        System.out.println(Ithbit(12, 1));
+        System.out.println(Ithbit(12, 3));
+        // isOddEven(10);
+        // isOddEven(11);
+
+
+        // System.out.println(exponentiation(5, 3));
         // System.out.println(countSetBits(8));
         // System.out.println(countSetBits(10));
         // System.out.println(isPowerOf2(10));
