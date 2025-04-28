@@ -56,7 +56,16 @@ public class Day39 {
         System.out.println("max sum : " + maxSum);
     }
 
+    public static void tolower(){
+        for(char i='A';i<='Z';i++){
+            System.out.print((char) (i|' ') + " ,");
+        }
+    }
+
     public static void main(String args[]) {
+        tolower();
+        System.out.println(~ ~9);
+        System.out.println(-(~9));
         // int nums[] = {1,2,3,4,5};
         int nums[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         Arrays.sort(nums);
@@ -75,9 +84,9 @@ public class Day39 {
         //   }
         // }
         // char bb[] = name.toUpperCase().toCharArray();
-        for (int i = 0; i < nums.length; i++) {
-            System.out.println(nums[i]);
-        }
+        // for (int i = 0; i < nums.length; i++) {
+        //     System.out.println(nums[i]);
+        // }
         // int arr[] = {7,1,5,3,6,4};
         // System.out.println(stock(arr));
     }
