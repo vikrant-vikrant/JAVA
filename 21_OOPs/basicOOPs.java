@@ -47,7 +47,7 @@ class Pen {
         return this.tip;
     }
 
-    void setColour(String newColour) {
+    void setColour(String newColontiur) {
         colour = newColour;
     }
 
