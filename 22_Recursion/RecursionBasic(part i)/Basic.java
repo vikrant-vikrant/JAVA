@@ -64,16 +64,64 @@ public class Basic {
         if (arr[i] > arr[i + 1]) {
             return false;
         }
-
         return isSorted(arr, i + 1);
     }
-    // Problem 7
+// Problem 7
 // WAF to find the first occurence of an element in an array
 
-    public static void     public static void main(String args[]) {
-        // int arr[] = {1, 2, 3, 4, 5, 6};
-        int arr[] = {1, 2, 1, 4, 5, 6};
-        System.out.println(isSorted(arr, 0));
+    public static int firstOccurence(int arr[], int key, int i) {
+        if (i == arr.length) {
+            return -1;
+        }
+        if (arr[i] == key) {
+            return i;
+        }
+        return firstOccurence(arr, key, i + 1);
+    }
+// Problem 8
+// WAF to find the last occurence of an element in an array
+
+    public static int lastOccurence(int arr[], int key, int i) {
+        if (i == arr.length) {
+            return -1;
+        }
+        int isFound = lastOccurence(arr, key, i + 1);
+        if (isFound != -1) {
+            return isFound;
+        }
+        //check with self
+        if (arr[i] == key) {
+            return i;
+        }
+        return isFound;
+    }
+// Problem 9
+// Print x^n
+// public static int pow(int x,int n){
+//     if(n == 1){
+//         return x;
+//     }
+//     return x * pow(x, n-1);
+// }
+
+    public static int pow(int x, int n) {
+        if (n == 1) {
+            return x;
+        }
+        int halfPower = pow(x, n / 2);
+        int halfPowerSq = halfPower * halfPower ;
+        if (n % 2 != 0) {
+            halfPowerSq = x * halfPowerSq;
+        }
+        return halfPowerSq;
+    }
+
+    public static void main(String args[]) {
+        System.out.println(pow(3, 3));
+        // int arr[] = {1, 2, 1, 4, 5, 6, 2, 5, 6};
+        // System.out.println(lastOccurence(arr, 5, 0));
+        // System.out.println(firstOccurence(arr, 5, 0));
+        // System.out.println(isSorted(arr, 0));
         // System.out.println(fibonacci(5));
         // System.out.println(fibonacci(6));
         // System.out.println(fibonacci(32));
