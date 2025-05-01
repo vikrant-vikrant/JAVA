@@ -115,9 +115,42 @@ public class Basic {
         }
         return halfPowerSq;
     }
+// Problem 11
+// Tiling Problem Approach
+public static int tilingProblem(int n){
+    //base case
+    if(n==0 | n==1){
+        return 1;
+    }
+    //vertical choice
+    int fnm1 = tilingProblem(n-1);
 
+    //horizontal choice 
+    int fnm2 = tilingProblem(n-2);
+    int totalWays = fnm1 + fnm2;
+    return totalWays;
+}
+// Problem 12
+// Remove Duplicates in a String
+public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean map[]){
+    if(idx == str.length()){
+        System.out.println(newStr);
+        return;
+    }
+    char currChar = str.charAt(idx);
+    if(map[currChar - 'a'] == true ){
+        removeDuplicates(str, idx+1, newStr, map);
+    }else{
+        map[currChar-'a'] = true;
+        removeDuplicates(str, idx, newStr.append(currChar), map);
+    }
+}
     public static void main(String args[]) {
-        System.out.println(pow(3, 3));
+        removeDuplicates("apnacollege", 0, new StringBuilder(""), new boolean[26]);
+        // System.out.println(tilingProblem(5));
+        // System.out.println(tilingProblem(4));
+        // System.out.println(tilingProblem(3));
+        // System.out.println(pow(3, 3));
         // int arr[] = {1, 2, 1, 4, 5, 6, 2, 5, 6};
         // System.out.println(lastOccurence(arr, 5, 0));
         // System.out.println(firstOccurence(arr, 5, 0));
