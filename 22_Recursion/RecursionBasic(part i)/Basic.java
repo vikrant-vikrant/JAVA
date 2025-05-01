@@ -109,7 +109,7 @@ public class Basic {
             return x;
         }
         int halfPower = pow(x, n / 2);
-        int halfPowerSq = halfPower * halfPower ;
+        int halfPowerSq = halfPower * halfPower;
         if (n % 2 != 0) {
             halfPowerSq = x * halfPowerSq;
         }
@@ -117,36 +117,73 @@ public class Basic {
     }
 // Problem 11
 // Tiling Problem Approach
-public static int tilingProblem(int n){
-    //base case
-    if(n==0 | n==1){
-        return 1;
-    }
-    //vertical choice
-    int fnm1 = tilingProblem(n-1);
 
-    //horizontal choice 
-    int fnm2 = tilingProblem(n-2);
-    int totalWays = fnm1 + fnm2;
-    return totalWays;
-}
+    public static int tilingProblem(int n) {
+        //base case
+        if (n == 0 | n == 1) {
+            return 1;
+        }
+        //vertical choice
+        int fnm1 = tilingProblem(n - 1);
+
+        //horizontal choice 
+        int fnm2 = tilingProblem(n - 2);
+        int totalWays = fnm1 + fnm2;
+        return totalWays;
+    }
 // Problem 12
 // Remove Duplicates in a String
-public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean map[]){
-    if(idx == str.length()){
-        System.out.println(newStr);
-        return;
+
+    public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean map[]) {
+        if (idx == str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+        char currChar = str.charAt(idx);
+        if (map[currChar - 'a'] == true) {
+            removeDuplicates(str, idx + 1, newStr, map);
+        } else {
+            map[currChar - 'a'] = true;
+            removeDuplicates(str, idx, newStr.append(currChar), map);
+        }
     }
-    char currChar = str.charAt(idx);
-    if(map[currChar - 'a'] == true ){
-        removeDuplicates(str, idx+1, newStr, map);
-    }else{
-        map[currChar-'a'] = true;
-        removeDuplicates(str, idx, newStr.append(currChar), map);
+// Problem 13
+// Friends Pairing Problem
+
+    public static int friendsPairing(int n) {
+        if (n == 1 || n == 2) {
+            return n;
+        }
+        //choice
+        //single
+        int fnm1 = friendsPairing(n - 1);
+        //pair
+        int fnm2 = friendsPairing(n - 2);
+        int pairWays = (n - 1) * fnm2;
+        //totalWays 
+        int totalWays = fnm1 + pairWays;
+        return totalWays;
+        // return friendsPairing(n - 1) + (n - 1) * friendsPairing(n - 2);
     }
-}
+
+// Problem 14
+// Binary Strings Problem
+// Print all binary strings of size N without consecutive ones.
+    public static void printBinString(int n,int lastPlace, String str){
+        if(n ==0){
+            System.out.println(str);
+            return;
+        }
+        printBinString(n-1, 0, str+"0");
+        if(lastPlace == 0){
+            printBinString(n-1, 1, str+"1");
+        }
+    }
     public static void main(String args[]) {
-        removeDuplicates("apnacollege", 0, new StringBuilder(""), new boolean[26]);
+        printBinString(3, 0, "");
+        // System.out.println(friendsPairing(3));
+        // System.out.println(friendsPairing(5));
+        // removeDuplicates("apnacollege", 0, new StringBuilder(""), new boolean[26]);
         // System.out.println(tilingProblem(5));
         // System.out.println(tilingProblem(4));
         // System.out.println(tilingProblem(3));
