@@ -32,10 +32,23 @@ public class backTrackingArr {
         //no choice
         findSubsets(str, ans, i + 1);
     }
+    //find permutations
+    public static void findPermutation(String str, String ans){
+        if(str.length() == 0){
+            System.out.print(ans + ", ");
+            return;
+        }
+        for(int i=0;i<str.length();i++){
+            char curr = str.charAt(i);
 
+            String newStr = str.substring(0,i) + str.substring(i+1);
+            findPermutation(newStr, ans+curr);
+        }
+    }
     public static void main(String[] args) {
         String alpha = "abc";
-        findSubsets(alpha, "", 0);
+        findPermutation(alpha, "");
+        // findSubsets(alpha, "", 0);
         // int arr[] = new int[5];
         // changeArr(arr, 0, 1);
         // System.out.println();
