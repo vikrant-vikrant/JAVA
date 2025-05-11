@@ -44,31 +44,93 @@ public class ArrayLists {
 
         //two pointer approch
         int st = 0;
-        int ed = nums.size()-1;
-        while(st<ed){
-          maxwater = Math.max(maxwater, (ed-st)*Math.min(nums.get(st),nums.get(ed)));
-          if(nums.get(st)<nums.get(ed)){
-            st++;
-          }else{
-            ed--;
-          }
+        int ed = nums.size() - 1;
+        while (st < ed) {
+            maxwater = Math.max(maxwater, (ed - st) * Math.min(nums.get(st), nums.get(ed)));
+            if (nums.get(st) < nums.get(ed)) {
+                st++;
+            } else {
+                ed--;
+            }
         }
         System.out.println("Most water " + maxwater);
     }
 
+    //Pair sum - 1
+    public static boolean pairSum(ArrayList<Integer> nums, int target) {
+        //brute force
+        // for(int i=0;i<nums.size();i++){
+        //     for(int j=i+1;j<nums.size();j++){
+        //         if(nums.get(i) + nums.get(j) == target){
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
+
+        //2 Pointer Approach
+        int st = 0;
+        int ed = nums.size() - 1;
+        while (st < ed) {
+            if (nums.get(st) + nums.get(ed) == target) {
+                return true;
+            } else if (nums.get(st) + nums.get(ed) < target) {
+                st++;
+            } else {
+                ed--;
+            }
+        }
+        return false;
+    }
+
+    //Pair sum -2
+    public static boolean pairSum2(ArrayList<Integer> nums, int target) {
+        int bp = -1;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums.get(i) > nums.get(i + 1)) {
+                bp = i;
+                break;
+            }
+        }
+
+        int lp = bp + 1;
+        int rp = bp;
+        while (lp != rp) {
+            if (nums.get(lp) + nums.get(rp) == target) {
+                return true;
+            }
+
+            if (nums.get(lp) + nums.get(rp) < target) {
+                lp = (lp + 1) % nums.size();
+            } else {
+                rp = (nums.size() + rp - 1) % nums.size();
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         ArrayList<Integer> height = new ArrayList<>();
-        height.add(1);
-        height.add(8);
+        // height.add(1);
+        // height.add(2);
+        // height.add(3);
+        // height.add(4);
+        // height.add(5);
+        // height.add(6);
+        // height.add(7);
+        // height.add(8);
         height.add(6);
+        height.add(7);
+        height.add(8);
+        height.add(1);
         height.add(2);
+        height.add(3);
+        height.add(4);
         height.add(5);
         // height.add(3);
-        height.add(4);
-        height.add(8);
-        height.add(3);
-        height.add(7);
-        mostWater(height);
+        // mostWater(height);
+        System.out.println(pairSum2(height, 4));
+        System.out.println(pairSum2(height, 114));
         //java collection framework
         ArrayList<Integer> list = new ArrayList<>();
         ArrayList<ArrayList<Integer>> mainList = new ArrayList<>();
