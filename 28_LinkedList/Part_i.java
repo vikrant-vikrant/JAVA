@@ -142,7 +142,7 @@ public class Part_i {
     return helper(head,key);
   }
 
-  public int reverse(){
+  public void reverse(){
     Node prev = null;
     Node curr = tail = head;
     Node next;
@@ -155,26 +155,98 @@ public class Part_i {
     }
     head = prev;
   }
+
+  //Find and Remove Nth Node from end
+  public void deleteNthfromEnd(int n){
+    //calculate size
+    int sz = 0;
+    Node temp = head;
+    while(temp != null){
+      temp = temp.next;
+      sz++;
+    }
+
+    if(n == sz){
+      head = head.next;//removeFrist
+      return;
+    }
+    //sz - n
+    int i= 1;
+    int iToFind = sz - n;
+    Node prev = head;
+    while(i< iToFind){
+      prev = prev.next;
+      i++;
+    }
+    prev.next = prev.next.next;
+    return;
+  }
+  //Find Mid slow fast approch
+  public Node findMid(Node head){
+    Node slow = head;
+    Node fast = head;
+
+    while(fast == null && fast.next != null){
+      slow = slow.next;//+1
+      fast = fast.next.next;//+2
+    }
+    return slow;//slow is my middle
+  }
+  //Check if LL is a Palindrome
+  public boolean checkPalindrome(){
+    if(head == null || head.next == null){
+      return true;
+    }
+    //find mid
+    Node midNode = findMid(head); 
+
+    //reverse 2nd halp
+    Node prev  = null;
+    Node curr = midNode;
+    Node next;
+    while(curr != null){
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+
+    Node right = prev;//right half head
+    Node left = head;
+
+    //check left half & right half
+    while(right != null){
+      if(left.data != right.data){
+        return false;
+      }
+      left = left.next;
+      right = right.next;
+    }
+    return true;
+  }
+
   public static void main(String[] args) {
     Part_i ll = new Part_i();
     ll.addFirst(2);
-    ll.print();
+    // ll.print();
     ll.addFirst(1);
-    ll.print();
-    ll.addLast(3);
-    ll.print();
-    ll.addLast(4);
-    ll.add(2,9);
-    ll.removeFrist();
-    ll.print();
+    // ll.print();
+    ll.addLast(2);
+    // ll.print();
+    // ll.addLast(1);
+    // ll.add(2,9);
+    // ll.removeFrist();
+    // ll.print();
 
-    ll.removeLast();
+    // ll.removeLast();
+    // ll.print();
+    // System.out.println(ll.size);
+    // System.out.println(ll.recSearch(3));
+    // System.out.println(ll.recSearch(9));
+    // ll.reverse();
+    // ll.deleteNthfromEnd(3);
     ll.print();
-    System.out.println(ll.size);
-    System.out.println(ll.recSearch(3));
-    System.out.println(ll.recSearch(9));
-    ll.reverse();
-    ll.print();
+    System.out.println(ll.checkPalindrome());
     
   }
 }
