@@ -224,29 +224,117 @@ public class Part_i {
     }
     return true;
   }
+    //Detecting cycle in LL
+  public static boolean isCycle(){
+    Node slow = head;
+    Node fast = head;
+    while(fast != null && fast.next != null){
+      slow = slow.next;
+      fast = fast.next.next;
+      if(slow == fast){
+        return true;
+      }
+    }
+    return false;
+  }
 
+  //Remove a LooplCycle in a LL
+  public static void removeCycle(){
+    //detect cycle
+    Node slow = head;
+    Node fast = head;
+    boolean cycle = false;
+    while(fast != null && fast.next != null){
+      slow = slow.next;
+      fast = fast.next.next;
+      if(fast == slow){
+        cycle = true;
+        break;
+      }
+    }
+    if(cycle == false){
+      return;
+    }
+    //find meeting point
+    slow = head;
+    Node prev = null;
+    while(slow != fast){
+      prev = fast;
+      slow = slow.next;
+      fast = fast.next;
+    }
+    //remove cycle -> last.next = null
+    if(prev != null){
+    prev.next = null;
+    }
+  }
+
+  //Merge sort in LL
+  private Node getMid(Node head){
+    Node slow = head;
+    Node fast = head.next;
+
+    while(fast != null && fast.next != null){
+      slow = slow.next;
+      fast = slow.next.next;
+    }
+    return slow;//mid node
+  }
+
+  private Node merge(Node head1, Node head2){
+    Node mergedLL = new Node(-1);
+    Node temp = mergedLL;
+
+    while(head1 != null && head2 != null){
+      if(head1.data <= head2.data){
+        temp.next = head1;
+        head1 = head1.next;
+        temp = temp.next;
+      }else{
+        temp.next = head2;
+        head2 = head2.next;
+        temp = temp.next;
+      }
+    }
+
+    while(head1 != null){
+      temp.next = head1;
+      head1 = head1.next;
+      temp = temp.next;
+    }
+
+    while(head2 != null){
+      temp.next = head2;
+      head2 = head2.next;
+      temp = temp.next;
+    }
+
+    return mergedLL.next;
+  }
+
+  public Node mergeSort(Node head){
+    if(head == null || head.next == null){
+      return head;
+    }
+    //find mid
+    Node mid = getMid(head);
+    //left & right MergeSort
+    Node rightHead = mid.next;
+    mid.next = null;
+    Node newLeft = mergeSort(head);
+    Node newRight = mergeSort(rightHead);
+    //merge
+    return merge(newLeft,newRight);
+  }
   public static void main(String[] args) {
     Part_i ll = new Part_i();
-    ll.addFirst(2);
-    // ll.print();
     ll.addFirst(1);
-    // ll.print();
-    ll.addLast(2);
-    // ll.print();
-    // ll.addLast(1);
-    // ll.add(2,9);
-    // ll.removeFrist();
-    // ll.print();
-
-    // ll.removeLast();
-    // ll.print();
-    // System.out.println(ll.size);
-    // System.out.println(ll.recSearch(3));
-    // System.out.println(ll.recSearch(9));
-    // ll.reverse();
-    // ll.deleteNthfromEnd(3);
+    ll.addFirst(2);
+    ll.addFirst(3);
+    ll.addFirst(4);
+    ll.addFirst(5);
     ll.print();
-    System.out.println(ll.checkPalindrome());
-    
+    ll.head = ll.mergeSort(ll.head);
+    ll.print();
   }
 }
