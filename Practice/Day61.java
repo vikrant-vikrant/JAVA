@@ -64,13 +64,38 @@ public class Day61 {
         }
         return output;
     }
+    //Monotonic arrays
     public static boolean isMonotonic(int nums[]){
       if(nums.length == 1){
         return true;
       }
       return isAscending(nums) || isDisending(nums);
     }
+    //Reverse an array
+    public static void reverseArr(int arr[]){
+      int st=0,ed=arr.length-1;
+      while(st < ed){
+        int temp = arr[ed];
+        arr[ed] = arr[st];
+        arr[st] = temp;
+        st++;
+        ed--;
+      }
+    }
+    //print arr
+    public static void printarr(int arr[]){
+      for(int i=0;i<arr.length;i++){
+        System.out.print(arr[i] + ", ");
+      }
+      System.out.println();
+    }
     public static void main(String args[]) {
+      //Reverse an array
+      int arr[] = {100,90,80,79,48,39,23,12,11};
+      printarr(arr);
+      reverseArr(arr);
+      printarr(arr);
+
       //monotonic
       // int arr[] = {100,90,80,79,48,39,23,12,11};
       // System.out.println(isMonotonic(arr));
