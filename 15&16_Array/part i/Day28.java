@@ -75,6 +75,11 @@ public class Day28 {
     }
 
     public static void main(String args[]) {
+        //creating an array
+        //dataType arrayName[] = new dataType[size];
+
+        //int marks[] = new int[5];
+        // String fruits[] = {"apple", "mango", "orange"};
         int x[] = {2, 4, 6, 8, 10};
         subArr(x);
         // pairInArr(x);
