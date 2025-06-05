@@ -30,26 +30,50 @@ public class Day63ii {
                 return mid;
             }
             if (nums[mid] < key) {
-                st = mid+1;
+                st = mid + 1;
             } else {
-                ed = mid-1;
+                ed = mid - 1;
             }
         }
         return -1;
     }
 
-    public static void reverseArr(int nums[]){
-      int st = 0,ed = nums.length-1;
-      while(st<ed){
-        int temp = nums[st];
-        nums[st] = nums[ed];
-        nums[ed] = temp;
-        // int temp = nums[ed];
-        // nums[ed] = nums[st];
-        // nums[st] = temp;
-        st++;
-        ed--;
-      }
+    public static void reverseArr(int nums[]) {
+        int st = 0, ed = nums.length - 1;
+        while (st < ed) {
+            int temp = nums[st];
+            nums[st] = nums[ed];
+            nums[ed] = temp;
+            // int temp = nums[ed];
+            // nums[ed] = nums[st];
+            // nums[st] = temp;
+            st++;
+            ed--;
+        }
+    }
+
+    public static void pairInArr(int nums[]) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                System.out.print("(" + i + "," + j + ")");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void subArrays(int nums[]) {
+        int ts = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i; j < nums.length; j++) {
+                for (int k = i; k <= j; k++) {
+                    System.out.print(nums[k] + " ");
+                }
+                ts++;
+                System.out.println();
+            }
+            System.out.println();
+        }
+        System.out.println("Total sumArrays : " + ts);
     }
 
     public static void main(String[] args) {
@@ -61,16 +85,18 @@ public class Day63ii {
         // String fruits[] = {"apple", "mango", "orange"};
         // Scanner sc = new Scanner(System.in);
         int arr[] = {2, 3, 4, 11, 12, 1};
-        System.out.println(linearSearch(arr, 3));
-        System.out.println(larInArr(arr));
+        subArrays(arr);
+        // pairInArr(arr);
+        // System.out.println(linearSearch(arr, 3));
+        // System.out.println(larInArr(arr));
 
-        int nums[] = {1, 2, 3, 4, 5, 6, 7, 8, 11};
-        System.out.println(binarySearch(nums, 8));
-        System.out.println(binarySearch(nums, 18));
-        reverseArr(nums);
-        for(int i=0;i<nums.length;i++){
-          System.out.print(nums[i]+" ,");
-        }
+        // int nums[] = {1, 2, 3, 4, 5, 6, 7, 8, 11};
+        // System.out.println(binarySearch(nums, 8));
+        // System.out.println(binarySearch(nums, 18));
+        // reverseArr(nums);
+        // for (int i = 0; i < nums.length; i++) {
+        //     System.out.print(nums[i] + " ,");
+        // }
 
         // int arr[] = new int[3];
         // arr[0] = sc.nextInt();
