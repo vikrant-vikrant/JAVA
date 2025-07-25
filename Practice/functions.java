@@ -37,14 +37,41 @@ public class functions {
         }
     }
 
+    public static void BintoDec(int n) {
+        int z = n;
+        int num = 0;
+        int x = 0;
+        while (n > 0) {
+            num += (n % 10) * (int) Math.pow(2, x);
+            x++;
+            n /= 10;
+        }
+        System.out.println("Decimal of " + z + " = " + num);
+    }
+
+    public static void DectoBin(int n) {
+        int num = 0;
+        int x = 0;
+        while (n > 0) {
+            num += (n % 2) * (int) Math.pow(10, x);
+            x++;
+            n /= 2;
+        }
+        System.out.println(num);
+    }
+
     public static void main(String[] args) {
 
-        System.out.println(product(5, 7));
-        System.out.println(factorial(6));
-        System.out.println(factorial(0));
-        System.out.println(binomialCoeffient(5, 2));
-        System.out.println(isPrime(19));
-        System.out.println(isPrime(10));
-        primeRange(100);
+        BintoDec(11001);
+        BintoDec(100110);
+        DectoBin(8);
+        DectoBin(13);
+        // System.out.println(product(5, 7));
+        // System.out.println(factorial(6));
+        // System.out.println(factorial(0));
+        // System.out.println(binomialCoeffient(5, 2));
+        // System.out.println(isPrime(19));
+        // System.out.println(isPrime(10));
+        // primeRange(100);
     }
 }
