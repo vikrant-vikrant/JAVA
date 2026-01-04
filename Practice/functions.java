@@ -50,6 +50,7 @@ public class functions {
     }
 
     public static void DectoBin(int n) {
+        int z = n;
         int num = 0;
         int x = 0;
         while (n > 0) {
@@ -57,7 +58,7 @@ public class functions {
             x++;
             n /= 2;
         }
-        System.out.println(num);
+        System.out.println("Binary of " + z+ " = " +num);
     }
 
     public static void main(String[] args) {
