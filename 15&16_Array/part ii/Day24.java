@@ -87,10 +87,10 @@ public class Day24 {
 
     //max profit of stocks
     public static int buySellStock(int prices[]) {
-        int buyPrice = Integer.MAX_VALUE;
-        int maxProfit = 0;
+        int buyPrice = Integer.MAX_VALUE;//infinite,7,1
+        int maxProfit = 0;//4,
 
-        for (int i = 0; i < prices.length; i++) {
+        for (int i = 0; i < prices.length; i++) {//0,1,2,3,4
             if (buyPrice < prices[i]) {
                 int profit = prices[i] - buyPrice;
                 maxProfit = Math.max(maxProfit, profit);

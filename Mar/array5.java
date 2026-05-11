@@ -71,19 +71,51 @@ class array5 {
         System.out.println("Max sum =" + ms);
     }
 
-    // public static int trappedRainWater(int height[]){
+    public static int trappedRainWater(int height[]) {
+        int lm[] = new int[height.length], rm[] = new int[height.length], trappedRainWater = 0;
+        lm[0] = height[0];
+        rm[rm.length - 1] = height[height.length - 1];
+        for (int i = 1; i < height.length; i++) {
+            lm[i] = Math.max(height[i], lm[i - 1]);
+        }
+        for (int i = height.length - 2; i >= 0; i--) {
+            rm[i] = Math.max(height[i], rm[i + 1]);
+        }
+        for (int i = 0; i < height.length; i++) {
+            int waterLevel = Math.min(rm[i], lm[i]);
+            trappedRainWater += waterLevel - height[i];
+        }
+        return trappedRainWater;
+    }
 
-    // }
+    public static int buySellStock(int prices[]) {
+        int buyPrice = Integer.MAX_VALUE;//7,1
+        int maxProfit = 0;//4,5
+        for (int i = 0; i < prices.length; i++) {//0,1,2,3,4
+            if (buyPrice < prices[i]) {
+                int profit = prices[i] - buyPrice;
+                maxProfit = Math.max(profit, maxProfit);
+            } else {
+                buyPrice = prices[i];
+            }
+        }
+        return maxProfit;
+    }
 
     public static void main(String[] args) {
         // int list[] = {-2, -3, 4, -1, -2, 1, 5, -3};
-        int list[] = {1, -2, 6, -1, 3};
+        // int list[] = {4, 2, 0, 6, 3, 2, 5};
+        int prices[] = {7, 1, 5, 3, 6, 4};
+        System.out.println(buySellStock(prices));
+        // int list[] = {1, -2, 6, -1, 3};
         // int list[] = {1, 54, 432, 523};
         // int list[] = {1, 12, 23, 34, 45, 54, 432, 523};
         // subArr(list);
         // maxSubArr(list);
-        maxSubArrSum(list);
-        prefixSum(list);
-        kadaneAlgo(list);
+        // maxSubArrSum(list);
+        // prefixSum(list);
+        // kadaneAlgo(list);
+
+        // System.out.println(trappedRainWater(list));
     }
 }
